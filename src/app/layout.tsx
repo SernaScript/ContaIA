@@ -9,6 +9,8 @@ import {
 } from '@clerk/nextjs'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'
+import Header from '../components/Header';
+import ServicesSection from '../components/ServicesSection';
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -32,22 +34,25 @@ export default function RootLayout({
 }>) {
   return (
     <ClerkProvider>
-      <html lang="en">
-        <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-          <header className="flex justify-end items-center p-4 gap-4 h-16">
-            <SignedOut>
-              <SignInButton />
-              <SignUpButton>
-                <button className="bg-[#6c47ff] text-white rounded-full font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 cursor-pointer">
-                  Sign Up
-                </button>
-              </SignUpButton>
-            </SignedOut>
-            <SignedIn>
-              <UserButton />
-            </SignedIn>
-          </header>
-          {children}
+      <html lang="es" className="dark">
+        <body className={`${geistSans.variable} ${geistMono.variable} antialiased min-h-screen bg-gray-50 dark:bg-gray-950`}>
+          <Header />
+          <main className="max-w-4xl mx-auto px-4">
+            <section className="py-12 text-center">
+              <h1 className="text-4xl font-bold text-blue-700 dark:text-blue-400 mb-2">ContaIA</h1>
+              <p className="text-lg text-gray-600 dark:text-gray-300 mb-6">Automatiza tu contabilidad con inteligencia artificial</p>
+            </section>
+            <section id="servicios">
+              <h2 className="text-2xl font-semibold mb-4 text-blue-600 dark:text-blue-300">Nuestros Servicios</h2>
+              <ServicesSection />
+            </section>
+            <section id="contacto" className="py-12 text-center">
+              <h2 className="text-2xl font-semibold mb-2 text-blue-600 dark:text-blue-300">Contacto</h2>
+              <p className="text-gray-600 dark:text-gray-300 mb-4">¿Interesado en nuestros servicios? Contáctanos para más información.</p>
+              <a href="mailto:info@contaia.com" className="inline-block"><button className="bg-blue-700 dark:bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-800 dark:hover:bg-blue-600">Enviar Email</button></a>
+            </section>
+            {children}
+          </main>
         </body>
       </html>
     </ClerkProvider>
