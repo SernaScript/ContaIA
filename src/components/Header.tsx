@@ -1,5 +1,6 @@
 import Link from "next/link";
 import ThemeToggle from "./ThemeToggle";
+import { SignInButton, SignUpButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
 
 export default function Header() {
   return (
@@ -12,6 +13,21 @@ export default function Header() {
         <Link href="#servicios" className="text-sm font-medium hover:text-blue-700 dark:hover:text-blue-400">Servicios</Link>
         <Link href="#contacto" className="text-sm font-medium hover:text-blue-700 dark:hover:text-blue-400">Contacto</Link>
         <ThemeToggle />
+        <SignedOut>
+          <SignInButton>
+            <button className="bg-blue-700 dark:bg-blue-500 text-white rounded-full font-medium text-sm h-10 px-4 cursor-pointer hover:bg-blue-800 dark:hover:bg-blue-600">
+              Iniciar sesión
+            </button>
+          </SignInButton>
+          <SignUpButton>
+            <button className="bg-blue-700 dark:bg-blue-500 text-white rounded-full font-medium text-sm h-10 px-4 cursor-pointer hover:bg-blue-800 dark:hover:bg-blue-600">
+              Registrarse
+            </button>
+          </SignUpButton>
+        </SignedOut>
+        <SignedIn>
+          <UserButton />
+        </SignedIn>
       </nav>
     </header>
   );
